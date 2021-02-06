@@ -5,7 +5,7 @@
 ---
 
 ## Домашние задания
-- [ ] #1 — Функции
+- [X] #1 — [Функции](https://github.com/DiMustard/javascript-loftschool/blob/homework_1/projects/functions/index.js)
 - [ ] #2 — Работа с массивами и объектами
 - [ ] #3 — Работа с исключениями и отладчиком
 - [ ] #4 — Работа с DOM
