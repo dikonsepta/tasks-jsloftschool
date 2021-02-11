@@ -91,13 +91,11 @@ function returnBadArguments(fn, ...args) {
   }
 
   const result = [];
-
-  const array = args;
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < args.length; i++) {
     try {
-      fn(array[i]);
+      fn(args[i]);
     } catch {
-      result.push(array[i]);
+      result.push(args[i]);
     }
   }
   return result;
@@ -130,13 +128,13 @@ function calculator(number = 0) {
       for (const el of arg) {
         number += el;
       }
-      return 'sum =', number;
+      return number;
     },
     dif(...arg) {
       for (const el of arg) {
         number -= el;
       }
-      return 'dif =', number;
+      return number;
     },
     div(...arg) {
       for (const el of arg) {
@@ -145,13 +143,13 @@ function calculator(number = 0) {
         }
         number /= el;
       }
-      return 'div =', number;
+      return number;
     },
     mul(...arg) {
       for (const el of arg) {
         number *= el;
       }
-      return 'mul =', number;
+      return number;
     },
   };
 }
