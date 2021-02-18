@@ -16,14 +16,45 @@
    homeworkContainer.appendChild(newDiv);
  */
 import './dnd.html';
-
 const homeworkContainer = document.querySelector('#app');
-
-document.addEventListener('mousemove', (e) => {});
-
-export function createDiv() {}
-
 const addDivButton = homeworkContainer.querySelector('#addDiv');
+let currentDrag;
+let startX;
+let startY;
+
+function rnd(min, max) {
+  return String(Math.floor(Math.random() * (max - min)) + min);
+}
+
+document.addEventListener('mousemove', (event) => {
+  if (currentDrag) {
+    currentDrag.style.top = event.clientY - startY + 'px';
+    currentDrag.style.left = event.clientX - startX + 'px';
+  }
+});
+
+export function createDiv() {
+  const newDiv = document.createElement('div');
+  newDiv.className = 'draggable-div';
+
+  newDiv.style.top = rnd(100, document.documentElement.clientHeight - 100) + 'px';
+  newDiv.style.left = rnd(100, document.documentElement.clientWidth - 100) + 'px';
+  newDiv.style.width = rnd(10, 100) + 'px';
+  newDiv.style.height = rnd(10, 100) + 'px';
+  newDiv.style.backgroundColor = `rgb(${rnd(0, 255)}, ${rnd(0, 255)}, ${rnd(0, 255)})`;
+
+  newDiv.onmousedown = (event) => {
+    startX = event.offsetX;
+    startY = event.offsetY;
+    currentDrag = newDiv;
+  };
+
+  newDiv.onmouseup = (event) => {
+    currentDrag = false;
+  };
+
+  return newDiv;
+}
 
 addDivButton.addEventListener('click', function () {
   const div = createDiv();
