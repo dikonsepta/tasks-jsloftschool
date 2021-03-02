@@ -47,10 +47,8 @@ const addButton = homeworkContainer.querySelector('#add-button');
 const listTable = homeworkContainer.querySelector('#list-table tbody');
 
 let filter = '';
-let CookieCount = 1;
 
 function updTable(filter = '') {
-  CookieCount = 1;
   listTable.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
@@ -79,6 +77,8 @@ function updTable(filter = '') {
         filter === ''
       ) {
         newBUT.textContent = 'удалить cookie';
+        newBUT.setAttribute('data-role', 'delete');
+        newBUT.setAttribute('data-cook', key);
         newTHbut.append(newBUT);
 
         newTR.append(newTHnam);
@@ -86,7 +86,6 @@ function updTable(filter = '') {
         newTR.append(newTHbut);
 
         fragment.append(newTR);
-        CookieCount++;
       }
     }
     listTable.append(fragment);
@@ -99,18 +98,18 @@ filterNameInput.addEventListener('input', function () {
 });
 
 addButton.addEventListener('click', () => {
-  if (!addNameInput.value) addNameInput.value = `CookieName${CookieCount}`;
-  if (!addValueInput.value) addValueInput.value = `CookieValue${CookieCount}`;
-
-  document.cookie = `${addNameInput.value}=${addValueInput.value}`;
-  addNameInput.value = '';
-  addValueInput.value = '';
+  if (addNameInput.value && addValueInput.value) {
+    document.cookie = `${addNameInput.value}=${addValueInput.value}`;
+  }
+  // Очистка значений мешает работе теста
+  // addNameInput.value = '';
+  // addValueInput.value = '';
   updTable(filter);
 });
 
 listTable.addEventListener('click', (e) => {
-  if (e.target.tagName === 'BUTTON' && e.target.textContent === 'удалить cookie') {
-    const currentName = e.target.parentNode.parentNode.firstElementChild.innerText;
+  if (e.target.tagName === 'BUTTON' && e.target.getAttribute('data-role') === 'delete') {
+    const currentName = e.target.getAttribute('data-cook');
     document.cookie = `${currentName}=deleted; max-age=-1`;
     updTable(filter);
   }
