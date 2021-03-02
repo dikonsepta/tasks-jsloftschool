@@ -11,7 +11,7 @@
 - [X] #4 — [Работа с DOM](https://github.com/DiMustard/javascript-loftschool/blob/homework_4/projects/dom/index.js)
 - [X] #5 — [DOM Events](https://github.com/DiMustard/javascript-loftschool/blob/homework_5/projects/async/index.js)
 - [X] #6 — [DOM Events](https://github.com/DiMustard/javascript-loftschool/blob/homework_6/projects/dnd/index.js)
-- [ ] #7 — Создать редактор cookie с возможностью фильтрации
+- [X] #7 — [Создать редактор cookie с возможностью фильтрации](https://github.com/DiMustard/javascript-loftschool/blob/homework_7/projects/cookie/index.js)
 
 ---
 
